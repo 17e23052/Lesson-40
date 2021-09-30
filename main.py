@@ -1,11 +1,19 @@
-print("Enter the first letter of the name:")
-letter = input().upper()
-file = open("names.csv", "r")
+print("Enter a player name:")
+name = input()
+file = open("players.csv", "r")
 data = []
 for line in file:
-  if line[0].upper() == letter:
-    data.append(line)
+  line = line.strip()
+  line = line.split(",")
+  data.append(line)
 x = 0
+score = 0
 while x < len(data):
-  print(data[x].strip())
+  if data[x][0] == name:
+    score = data[x][1]
   x = x + 1
+if score == 0:
+  print("No value")
+else:
+  print(f"The last score from {name} was {score}")
+file.close()
